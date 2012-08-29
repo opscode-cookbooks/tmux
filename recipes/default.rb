@@ -26,6 +26,7 @@ if node['platform'] == 'centos'
     source "http://downloads.sourceforge.net/tmux/#{tar_name}.tar.gz"
     checksum node['tmux']['checksum']
     notifies :run, 'bash[install_tmux]', :immediately
+    not_if 'test "$(tmux -V | cut -d' ' -f2)" = "1.6"'
   end
 
   bash 'install_tmux' do
