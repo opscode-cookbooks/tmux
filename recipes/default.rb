@@ -18,6 +18,8 @@
 
 if node['platform'] == 'centos'
   Chef::Log.info('There is not a tmux package for CentOS. Compiling from source...')
+  package 'gcc'
+  package 'make'
   package 'libevent-devel'
   package 'ncurses-devel'
 
