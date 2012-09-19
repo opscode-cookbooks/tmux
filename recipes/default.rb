@@ -16,12 +16,9 @@
 # See the License for the specific language governing permissions and
 #
 
-if node['platform'] == 'centos'
-  include_recipe 'yum::epel'
-  package 'tmux'
-else
-  package 'tmux'
-end
+include_recipe 'yum::epel' if(node['platform_family'] == "rhel")
+
+package 'tmux'
 
 template '/etc/tmux.conf' do
   source 'tmux.conf'
