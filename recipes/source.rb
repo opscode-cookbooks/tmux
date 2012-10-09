@@ -16,9 +16,16 @@
 # limitations under the License.
 #
 
-Chef::Log.info('There is not a tmux package for Red Hat family. Compiling from source...')
-package 'libevent-devel'
-package 'ncurses-devel'
+pkgs = case node['platform_family']
+when 'rhel'
+  %w(libevent-devel ncurses-devel)
+else
+  %w(libevent-dev libncurses5-dev)
+end
+
+pkgs.each do |pkg|
+  package pkg
+end
 
 tar_name = "tmux-#{node['tmux']['version']}"
 remote_file "#{Chef::Config['file_cache_path']}/#{tar_name}.tar.gz" do
