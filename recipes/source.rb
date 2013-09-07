@@ -34,9 +34,9 @@ remote_file "#{Chef::Config['file_cache_path']}/#{tar_name}.tar.gz" do
   notifies :run, 'bash[install_tmux]', :immediately
 end
 
-prefix = ""
 if node['tmux']['install_prefix']
-  prefix = "--prefix=\"#{node['tmux']['install_prefix']}\""
+  node.default['tmux']['configure_opts'] <<
+    "--prefix=\"#{node['tmux']['install_prefix']}\""
 end
 
 bash 'install_tmux' do
@@ -44,7 +44,10 @@ bash 'install_tmux' do
   cwd Chef::Config['file_cache_path']
   code <<-EOH
       tar -zxf #{tar_name}.tar.gz
-      (cd #{tar_name} && ./configure #{prefix} && make && make install)
+      cd #{tar_name}
+      ./configure #{node.default['tmux']['configure_opts'].join(" ")}
+      make
+      make install
     EOH
   action :nothing
 end
