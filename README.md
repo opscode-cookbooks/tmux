@@ -62,9 +62,6 @@ This section details "quick development" steps. For a detailed explanation, see 
     - Test Kitchen will run and converge the recipes
 
 
->>>>>>> refs/remotes/main/master
-
-
 License & Authors
 -----------------
 - Author: Joshua Timberman (<joshua@opscode.com>)
