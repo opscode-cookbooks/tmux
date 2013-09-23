@@ -15,7 +15,7 @@ Attributes
 - `node['tmux']['install_method']` - source or package, uses the appropriate recipe.
 - `node['tmux']['version']` - version of tmux to download and install from source.
 - `node['tmux']['checksum']` - sha256 checksum of the tmux tarball
-- `node['tmux']['install_prefix']` - path given to `--perfix` configure argument when installing from source.
+- `node['tmux']['install_prefix']` - path given to `--prefix` configure argument when installing from source.
 - `node['tmux']['configure_opts']` - array of command line options passed as arguments to configure script when installing from source.
 
 
