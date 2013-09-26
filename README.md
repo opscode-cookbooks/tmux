@@ -32,6 +32,10 @@ default['tmux']['configure_options'] << "--prefix=/opt/tmux"
 
 There are two "private" recipes, `_package`, and `_source` that are not meant to be included directly in a run_list. They are used by the default recipe and toggled with the node attribute `install_method`.
 
+When installing from source, an install prefix can be set with the `configure_options` attribute. For example:
+
+    default['tmux']['configure_options'] << "--prefix=/opt/tmux"
+
 
 Development
 -----------
